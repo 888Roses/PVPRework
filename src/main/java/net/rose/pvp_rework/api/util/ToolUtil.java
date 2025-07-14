@@ -12,7 +12,7 @@ public class ToolUtil {
         return attackSpeed - BASE_PLAYER_ATTACK_SPEED;
     }
 
-    public static int getAttackDamage(int damage, ToolMaterial material) {
+    public static int getAttackDamage(ToolMaterial material, int damage) {
         return Math.round(damage - 1 - material.getAttackDamage());
     }
 }

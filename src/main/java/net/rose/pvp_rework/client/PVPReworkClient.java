@@ -8,5 +8,6 @@ public class PVPReworkClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModNetworking.createClientGlobalReceivers();
+        ModItemModels.init();
     }
 }
