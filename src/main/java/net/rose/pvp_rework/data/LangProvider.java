@@ -39,7 +39,7 @@ public class LangProvider extends FabricLanguageProvider {
         enchantment(
                 ModEnchantments.RECALL, "Recall",
                 "Hitting an enemy with a thrown scythe immediately calls it back to you. Additionally, you can" +
-                        "§6Place Block/Use Item §8to recall the scythe at any point."
+                        " §2Place Block/Use Item §8to recall the scythe at any point."
         );
     }
 

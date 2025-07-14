@@ -22,6 +22,7 @@ import net.rose.pvp_rework.api.util.EnchantmentUtil;
 import net.rose.pvp_rework.api.util.SoundUtil;
 import net.rose.pvp_rework.common.init.ModEnchantments;
 import net.rose.pvp_rework.common.init.ModEntityComponents;
+import net.rose.pvp_rework.common.init.ModItems;
 import net.rose.pvp_rework.common.init.ModSounds;
 import net.rose.pvp_rework.common.networking.ChargoldScytheHitSoundNetworkMessageS2C;
 
@@ -135,9 +136,13 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
                 }
             }
 
+            final var hasRecallEnchantment = EnchantmentUtil.hasEnchantment(this.stack, ModEnchantments.RECALL);
             var amount = 9F;
             if (this.getOwner() instanceof LivingEntity ownerLivingEntity) {
                 amount = (float) ownerLivingEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+            }
+            if (hasRecallEnchantment) {
+                amount *= 0.75f;
             }
 
             var hasHitEnemy = false;
@@ -155,7 +160,7 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
             }
 
             // Recall after hitting entities.
-            if (hasHitEnemy && EnchantmentUtil.hasEnchantment(this.stack, ModEnchantments.RECALL)) {
+            if (hasHitEnemy && hasRecallEnchantment) {
                 this.setLifetime(-1);
             }
         }
@@ -165,6 +170,10 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
         if (this.getOwner() instanceof LivingEntity ownerLivingEntity) {
             final var component = ModEntityComponents.CHARGOLD_SCYTHE.get(ownerLivingEntity);
             component.setHasScythe(true);
+
+            if (ownerLivingEntity instanceof PlayerEntity player) {
+                player.getItemCooldownManager().set(ModItems.CHARGOLD_SCYTHE, 20);
+            }
         }
     }
 
