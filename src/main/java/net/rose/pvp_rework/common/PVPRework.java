@@ -3,6 +3,7 @@ package net.rose.pvp_rework.common;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import net.rose.pvp_rework.api.API;
+import net.rose.pvp_rework.common.init.ModEnchantments;
 import net.rose.pvp_rework.common.init.ModEntityTypes;
 import net.rose.pvp_rework.common.init.ModItems;
 import net.rose.pvp_rework.common.init.ModSounds;
@@ -20,6 +21,7 @@ public class PVPRework implements ModInitializer {
         ModItems.init();
         ModEntityTypes.init();
         ModSounds.init();
+        ModEnchantments.init();
     }
 
     public static Identifier id(String path) {

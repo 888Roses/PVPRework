@@ -18,7 +18,9 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.rose.pvp_rework.api.util.EnchantmentUtil;
 import net.rose.pvp_rework.api.util.SoundUtil;
+import net.rose.pvp_rework.common.init.ModEnchantments;
 import net.rose.pvp_rework.common.init.ModEntityComponents;
 import net.rose.pvp_rework.common.init.ModSounds;
 import net.rose.pvp_rework.common.networking.ChargoldScytheHitSoundNetworkMessageS2C;
@@ -138,6 +140,7 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
                 amount = (float) ownerLivingEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
             }
 
+            var hasHitEnemy = false;
             for (var livingEntity : entitiesInRadius) {
                 if (livingEntity.damage(damageSource, amount)) {
                     this.HIT_ENEMY_SOUNDS.add(livingEntity.getPos());
@@ -146,7 +149,14 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
                         EnchantmentHelper.onUserDamaged(livingEntity, ownerLivingEntity);
                         EnchantmentHelper.onTargetDamaged(ownerLivingEntity, livingEntity);
                     }
+
+                    hasHitEnemy = true;
                 }
+            }
+
+            // Recall after hitting entities.
+            if (hasHitEnemy && EnchantmentUtil.hasEnchantment(this.stack, ModEnchantments.RECALL)) {
+                this.setLifetime(-1);
             }
         }
     }

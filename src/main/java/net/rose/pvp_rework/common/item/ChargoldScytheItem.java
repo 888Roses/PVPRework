@@ -24,8 +24,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.rose.pvp_rework.api.util.EnchantmentUtil;
 import net.rose.pvp_rework.api.util.SoundUtil;
 import net.rose.pvp_rework.api.util.ToolUtil;
+import net.rose.pvp_rework.common.init.ModEnchantments;
 import net.rose.pvp_rework.common.init.ModEntityComponents;
 import net.rose.pvp_rework.common.init.ModEntityTypes;
 import net.rose.pvp_rework.common.init.ModSounds;
@@ -93,10 +95,18 @@ public class ChargoldScytheItem extends AxeItem {
         final var stack = user.getStackInHand(hand);
 
         if (!component.hasScythe()) {
+            final var scytheEntity = component.getScytheEntity();
+            if (EnchantmentUtil.hasEnchantment(stack, ModEnchantments.RECALL) && scytheEntity != null) {
+                // Recalls it.
+                scytheEntity.setLifetime(-1);
+                return TypedActionResult.success(stack);
+            }
+
             return TypedActionResult.pass(stack);
         }
 
-        if (world instanceof ServerWorld serverWorld) {
+        if (world instanceof
+                ServerWorld serverWorld) {
             final var scytheEntity = ModEntityTypes.CHARGOLD_SCYTHE.create(world);
             if (scytheEntity != null) {
                 scytheEntity.setOwner(user);
@@ -107,6 +117,7 @@ public class ChargoldScytheItem extends AxeItem {
                 scytheEntity.refreshPositionAndAngles(user.getX(), user.getEyeY() - 0.1, user.getZ(), user.getYaw(), user.getPitch());
                 scytheEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, TRAVEL_SPEED, 0.0F);
                 component.setHasScythe(false);
+                component.setScythe(scytheEntity);
 
                 serverWorld.spawnEntity(scytheEntity);
                 user.swingHand(hand);

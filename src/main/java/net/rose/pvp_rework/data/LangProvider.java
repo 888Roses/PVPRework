@@ -4,11 +4,13 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.rose.pvp_rework.common.init.ModEnchantments;
 import net.rose.pvp_rework.common.init.ModEntityTypes;
 import net.rose.pvp_rework.common.init.ModItems;
 import net.rose.pvp_rework.common.init.ModSounds;
@@ -33,8 +35,18 @@ public class LangProvider extends FabricLanguageProvider {
         sound(ModSounds.CHARGOLD_SCYTHE_HIT, "Chargold Scythe Hit");
 
         lang.add(ModEntityTypes.CHARGOLD_SCYTHE, "Chargold Scythe");
+
+        enchantment(
+                ModEnchantments.RECALL, "Recall",
+                "Hitting an enemy with a thrown scythe immediately calls it back to you. Additionally, you can" +
+                        "§6Place Block/Use Item §8to recall the scythe at any point."
+        );
     }
 
+    private void enchantment(Enchantment enchantment, String name, String desc) {
+        lang.add(enchantment, name);
+        lang.add(enchantment.getTranslationKey() + ".desc", desc);
+    }
 
     /**
      * Generates translation keys for a death message.

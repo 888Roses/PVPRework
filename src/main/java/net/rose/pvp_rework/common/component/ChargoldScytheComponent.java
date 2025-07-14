@@ -8,12 +8,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.rose.pvp_rework.api.component.ExtendedComponent;
+import net.rose.pvp_rework.common.entity.ChargoldScytheEntity;
 import net.rose.pvp_rework.common.init.ModEntityComponents;
 
-public class ChargoldScytheComponent implements AutoSyncedComponent, CommonTickingComponent,
+public class ChargoldScytheComponent implements AutoSyncedComponent,
         ExtendedComponent<ChargoldScytheComponent> {
     private LivingEntity livingEntity;
     private boolean hasScythe = true;
+    private ChargoldScytheEntity scytheEntity;
 
     public ChargoldScytheComponent(LivingEntity livingEntity) {
         this.livingEntity = livingEntity;
@@ -28,15 +30,12 @@ public class ChargoldScytheComponent implements AutoSyncedComponent, CommonTicki
         this.sync();
     }
 
-    public void sync() {
-        this.sync(this.livingEntity);
+    public ChargoldScytheEntity getScytheEntity() {
+        return scytheEntity;
     }
 
-    @Override
-    public void tick() {
-        if (livingEntity instanceof PlayerEntity player) {
-            player.sendMessage(Text.literal("Has Scythe: " + hasScythe), true);
-        }
+    public void sync() {
+        this.sync(this.livingEntity);
     }
 
     @Override
@@ -52,5 +51,10 @@ public class ChargoldScytheComponent implements AutoSyncedComponent, CommonTicki
     @Override
     public ComponentKey<ChargoldScytheComponent> getComponent() {
         return ModEntityComponents.CHARGOLD_SCYTHE;
+    }
+
+    public void setScythe(ChargoldScytheEntity scytheEntity) {
+        this.scytheEntity = scytheEntity;
+        this.sync();
     }
 }
