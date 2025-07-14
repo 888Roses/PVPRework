@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "pvp_rework",
+  "version": "${version}",
+  "name": "PVP Rework",
+  "description": "Uhh pvp but better ig",
+  "authors": [
+    "Rose"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/pvp_rework/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "net.rose.pvp_rework.data.PVPReworkDataGenerator"
+    ],
+    "client": [
+      "net.rose.pvp_rework.client.PVPReworkClient"
+    ],
+    "main": [
+      "net.rose.pvp_rework.common.PVPRework"
+    ],
+    "cardinal-components-entity": [
+      "net.rose.pvp_rework.common.init.ModEntityComponents"
+    ],
+    "cardinal-components-world": [
+      "net.rose.pvp_rework.common.init.ModWorldComponents"
+    ],
+    "cardinal-components-block": [
+      "net.rose.pvp_rework.common.init.ModBlockComponents"
+    ]
+  },
+  "mixins": [
+    "pvp_rework.mixins.json"
+  ],
+  "custom": {
+    "cardinal-components": [
+      "candy_chase:sweet_tooth"
+    ]
+  },
+  "accessWidener": "pvp_rework.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}

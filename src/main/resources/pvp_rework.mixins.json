@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.rose.pvp_rework.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "api.LivingEntityMixin"
+  ],
+  "client": [
+    "api.BipedEntityModelMixin",
+    "api.ItemRendererMixin",
+    "api.MinecraftClientMixin",
+    "api.ModelLoaderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
