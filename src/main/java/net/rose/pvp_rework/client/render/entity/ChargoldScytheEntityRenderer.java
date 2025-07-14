@@ -36,8 +36,10 @@ public class ChargoldScytheEntityRenderer extends EntityRenderer<ChargoldScytheE
         matrices.scale(1.2F, 1.2F, 1.2F);
         matrices.translate(0, 0.25f, 0);
 
+        var e = new ItemStack(ModItems.CHARGOLD_SCYTHE);
+        e.getOrCreateNbt().putBoolean("is_thrown",true);
         this.itemRenderer.renderItem(
-                scythe.getStack() == null ? stack : scythe.getStack(), ModelTransformationMode.FIXED,
+                e, ModelTransformationMode.FIXED,
                 light, OverlayTexture.DEFAULT_UV,
                 matrices, vertexConsumers,
                 scythe.getWorld(), scythe.getId()

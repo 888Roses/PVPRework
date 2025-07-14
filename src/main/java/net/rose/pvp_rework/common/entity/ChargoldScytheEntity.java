@@ -95,7 +95,7 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
                     ModSounds.CHARGOLD_SCYTHE_TRAVEL, SoundCategory.PLAYERS,
                     MathHelper.nextFloat(this.random, 0.95F, 1.05F) - 0.25F,
                     MathHelper.nextFloat(this.random, 0.95F, 1.2F),
-                    50F
+                    30F
             );
         }
 
@@ -195,12 +195,17 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
                 this.getWorld(), this.getPos(),
                 ModSounds.CHARGOLD_SCYTHE_BOUNCE, SoundCategory.PLAYERS,
                 0.9F, MathHelper.nextFloat(random, 0.8F, 1.1F),
-                40F
+                25F
         );
     }
 
     @Override
     public void setPierceLevel(byte level) {
         super.setPierceLevel(level);
+    }
+
+    @Override
+    protected boolean tryPickup(PlayerEntity player) {
+        return false;
     }
 }

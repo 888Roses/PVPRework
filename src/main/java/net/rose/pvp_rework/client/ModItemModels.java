@@ -1,5 +1,6 @@
 package net.rose.pvp_rework.client;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.rose.pvp_rework.api.item.model.ItemContextualModelInfo;
 import net.rose.pvp_rework.common.PVPRework;
@@ -9,7 +10,10 @@ import net.rose.pvp_rework.common.init.ModItems;
 public class ModItemModels {
     public static final ItemContextualModelInfo CHARGOLD_SCYTHE =
             ItemContextualModelInfo.create(ModItems.CHARGOLD_SCYTHE)
-                    .with("chargold_scythe_outline", info -> info.stack().hasNbt() && !info.stack().getOrCreateNbt().getBoolean("has_scythe"))
+                    .with("chargold_scythe_outline", info ->
+                            !ModEntityComponents.CHARGOLD_SCYTHE.get(info.livingEntity() == null
+                                    ? MinecraftClient.getInstance().player : info.livingEntity()).hasScythe()
+                                    && (!info.stack().hasNbt() || !info.stack().getOrCreateNbt().getBoolean("is_thrown")))
                     .with("chargold_scythe_handheld", ModItemModels::isHandheld)
                     .register();
 

@@ -144,4 +144,11 @@ public class ChargoldScytheItem extends AxeItem {
             }
         }
     }
+
+    @Override
+    public ItemStack getDefaultStack() {
+        var stack = super.getDefaultStack();
+        stack.getOrCreateNbt().putBoolean("has_scythe", true);
+        return stack;
+    }
 }
