@@ -15,7 +15,7 @@ import net.rose.pvp_rework.common.entity.ChargoldScytheEntity;
 import net.rose.pvp_rework.common.init.ModItems;
 
 public class ChargoldScytheEntityRenderer extends EntityRenderer<ChargoldScytheEntity> {
-    public static final float SCALE = 1.2F;
+    public static final float SCALE = 1.5F;
     private static final ItemStack STACK = new ItemStack(ModItems.CHARGOLD_SCYTHE);
 
     private final ItemRenderer itemRenderer;
