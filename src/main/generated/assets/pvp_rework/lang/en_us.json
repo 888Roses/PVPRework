@@ -1,5 +1,9 @@
 {
+  "entity.pvp_rework.chargold_scythe": "Chargold Scythe",
   "item.pvp_rework.chargold_scythe": "Chargold Scythe",
   "item.pvp_rework.chargold_scythe.desc1": "%s to throw.",
-  "item.pvp_rework.chargold_scythe.desc2": "Charge by hitting critical hits."
+  "item.pvp_rework.chargold_scythe.desc2": "Charge by hitting critical hits.",
+  "subtitles.pvp_rework.item.chargold_scythe.hit": "Chargold Scythe Hit",
+  "subtitles.pvp_rework.item.chargold_scythe.throw": "Chargold Scythe Thrown",
+  "subtitles.pvp_rework.item.chargold_scythe.travel": "Chargold Scythe Spinning"
 }

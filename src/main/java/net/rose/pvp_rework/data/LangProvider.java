@@ -9,7 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.rose.pvp_rework.common.init.ModEntityTypes;
 import net.rose.pvp_rework.common.init.ModItems;
+import net.rose.pvp_rework.common.init.ModSounds;
 
 import java.util.List;
 
@@ -25,6 +27,12 @@ public class LangProvider extends FabricLanguageProvider {
         lang = translationBuilder;
 
         item(ModItems.CHARGOLD_SCYTHE, "Chargold Scythe", "%s to throw.", "Charge by hitting critical hits.");
+
+        sound(ModSounds.CHARGOLD_SCYTHE_TRAVEL, "Chargold Scythe Spinning");
+        sound(ModSounds.CHARGOLD_SCYTHE_THROW, "Chargold Scythe Thrown");
+        sound(ModSounds.CHARGOLD_SCYTHE_HIT, "Chargold Scythe Hit");
+
+        lang.add(ModEntityTypes.CHARGOLD_SCYTHE, "Chargold Scythe");
     }
 
 

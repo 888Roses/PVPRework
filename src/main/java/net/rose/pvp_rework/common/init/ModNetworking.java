@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 import net.rose.pvp_rework.api.networking.NetworkMessage;
 import net.rose.pvp_rework.common.PVPRework;
+import net.rose.pvp_rework.common.networking.ChargoldScytheHitSoundNetworkMessageS2C;
 import net.rose.pvp_rework.common.networking.ResetVelocityNetworkMessageS2C;
 
 import java.util.HashMap;
@@ -50,6 +51,7 @@ public class ModNetworking {
     // endregion
 
     public static ResetVelocityNetworkMessageS2C RESET_VELOCITY = register(ResetVelocityNetworkMessageS2C.ID, new ResetVelocityNetworkMessageS2C());
+    public static ChargoldScytheHitSoundNetworkMessageS2C SCYTHE_HIT_SOUND = register(ChargoldScytheHitSoundNetworkMessageS2C.ID, new ChargoldScytheHitSoundNetworkMessageS2C());
 
     public static void init() {
         createServerGlobalReceivers();

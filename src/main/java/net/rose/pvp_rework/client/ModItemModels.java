@@ -3,13 +3,15 @@ package net.rose.pvp_rework.client;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.rose.pvp_rework.api.item.model.ItemContextualModelInfo;
 import net.rose.pvp_rework.common.PVPRework;
+import net.rose.pvp_rework.common.init.ModEntityComponents;
 import net.rose.pvp_rework.common.init.ModItems;
 
 public class ModItemModels {
     public static final ItemContextualModelInfo CHARGOLD_SCYTHE =
             ItemContextualModelInfo.create(ModItems.CHARGOLD_SCYTHE)
-            .with("chargold_scythe_handheld", ModItemModels::isHandheld)
-            .register();
+                    .with("chargold_scythe_outline", info -> info.stack().hasNbt() && !info.stack().getOrCreateNbt().getBoolean("has_scythe"))
+                    .with("chargold_scythe_handheld", ModItemModels::isHandheld)
+                    .register();
 
     // region Util
 

@@ -1,0 +1,22 @@
+{
+  "item.chargold_scythe.hit": {
+    "category": "players",
+    "sounds": ["pvp_rework:item/chargold_scythe/hit"],
+    "subtitle": "subtitles.pvp_rework.item.chargold_scythe.hit"
+  },
+  "item.chargold_scythe.throw": {
+    "category": "players",
+    "sounds": ["pvp_rework:item/chargold_scythe/throw"],
+    "subtitle": "subtitles.pvp_rework.item.chargold_scythe.throw"
+  },
+  "item.chargold_scythe.travel": {
+    "category": "players",
+    "sounds": ["pvp_rework:item/chargold_scythe/travel"],
+    "subtitle": "subtitles.pvp_rework.item.chargold_scythe.travel"
+  },
+  "item.chargold_scythe.bounce": {
+    "category": "players",
+    "sounds": ["pvp_rework:item/chargold_scythe/bounce"],
+    "subtitle": "subtitles.pvp_rework.item.chargold_scythe.bounce"
+  }
+}

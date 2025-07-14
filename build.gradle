@@ -42,7 +42,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // modImplementation "maven.modrinth:amarite:avD3BFrw"
+    modImplementation "maven.modrinth:amarite:avD3BFrw"
     modImplementation("com.jamieswhiteshirt:reach-entity-attributes:2.4.0")
     modImplementation "dev.emi:trinkets:3.7.1"
 

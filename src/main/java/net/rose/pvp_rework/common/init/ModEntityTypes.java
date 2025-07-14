@@ -12,7 +12,7 @@ public class ModEntityTypes {
     public static final EntityType<ChargoldScytheEntity> CHARGOLD_SCYTHE = of(
             "chargold_scythe",
             EntityType.Builder.create(ChargoldScytheEntity::new, SpawnGroup.MISC)
-                    .setDimensions(1.75f, 0.5f)
+                    .setDimensions(2F, 0.5F)
     );
 
     public static <T extends Entity> EntityType<T> of(String path, EntityType.Builder<T> entity) {

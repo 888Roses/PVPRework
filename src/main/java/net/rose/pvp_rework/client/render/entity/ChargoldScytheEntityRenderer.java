@@ -11,9 +11,11 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3d;
+import net.rose.pvp_rework.api.util.MatrixUtil;
 import net.rose.pvp_rework.common.entity.ChargoldScytheEntity;
 import net.rose.pvp_rework.common.init.ModItems;
+import org.joml.Vector3d;
 
 public class ChargoldScytheEntityRenderer extends EntityRenderer<ChargoldScytheEntity> {
     private static final ItemStack stack;
@@ -25,24 +27,24 @@ public class ChargoldScytheEntityRenderer extends EntityRenderer<ChargoldScytheE
     }
 
     @Override
-    public void render(ChargoldScytheEntity disc, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+    public void render(ChargoldScytheEntity scythe, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
 
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F + MathHelper.lerp(tickDelta, disc.prevYaw, disc.getYaw())));
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F + MathHelper.lerp(tickDelta, disc.prevPitch, disc.getPitch())));
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(((float)disc.age + tickDelta) * -75.0F));
-        matrices.scale(1.0F, 1.0F, 1.0F);
+        matrices.multiply(MatrixUtil.fromEulerAngles(0, ((float) scythe.age + tickDelta) * -75.0F, 0));
+        matrices.multiply(MatrixUtil.fromEulerAngles(90.0F, 180.0F, 0));
+
+        matrices.scale(1.2F, 1.2F, 1.2F);
         matrices.translate(0, 0.25f, 0);
 
         this.itemRenderer.renderItem(
-                stack, ModelTransformationMode.FIXED,
+                scythe.getStack() == null ? stack : scythe.getStack(), ModelTransformationMode.FIXED,
                 light, OverlayTexture.DEFAULT_UV,
                 matrices, vertexConsumers,
-                disc.getWorld(), disc.getId()
+                scythe.getWorld(), scythe.getId()
         );
 
         matrices.pop();
-        super.render(disc, yaw, tickDelta, matrices, vertexConsumers, light);
+        super.render(scythe, yaw, tickDelta, matrices, vertexConsumers, light);
     }
 
     public Identifier getTexture(ChargoldScytheEntity entity) {
