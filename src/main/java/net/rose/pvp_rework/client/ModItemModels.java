@@ -10,10 +10,20 @@ import net.rose.pvp_rework.common.init.ModItems;
 public class ModItemModels {
     public static final ItemContextualModelInfo CHARGOLD_SCYTHE =
             ItemContextualModelInfo.create(ModItems.CHARGOLD_SCYTHE)
-                    .with("chargold_scythe_outline", info ->
-                            !ModEntityComponents.CHARGOLD_SCYTHE.get(info.livingEntity() == null
-                                    ? MinecraftClient.getInstance().player : info.livingEntity()).hasScythe()
-                                    && (!info.stack().hasNbt() || !info.stack().getOrCreateNbt().getBoolean("is_thrown")))
+                    .with("chargold_scythe_outline", info -> {
+                        var livingEntity = info.livingEntity();
+                        // If the living entity is null, it means it is our client player, so we can set it to that.
+                        if (livingEntity == null) livingEntity = MinecraftClient.getInstance().player;
+
+                        // Should never be happening, only for safety measures.
+                        if (livingEntity == null) {
+                            PVPRework.LOGGER.error("[ModItemModels]: Could not find owner living entity for model 'chargold_scythe_outline'!");
+                            return false;
+                        }
+
+                        final var component = ModEntityComponents.CHARGOLD_SCYTHE.get(livingEntity);
+                        return component.isThrown() && info.mode() != ModelTransformationMode.FIXED;
+                    })
                     .with("chargold_scythe_handheld", ModItemModels::isHandheld)
                     .register();
 

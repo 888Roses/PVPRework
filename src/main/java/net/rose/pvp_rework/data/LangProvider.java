@@ -28,7 +28,12 @@ public class LangProvider extends FabricLanguageProvider {
     public void generateTranslations(TranslationBuilder translationBuilder) {
         lang = translationBuilder;
 
-        item(ModItems.CHARGOLD_SCYTHE, "Chargold Scythe", "%s to throw.", "Charge by hitting critical hits.");
+        item(
+                ModItems.CHARGOLD_SCYTHE,
+                "Chargold Scythe",
+                "%s to throw.",
+                "Charge by hitting critical hits."
+        );
 
         sound(ModSounds.CHARGOLD_SCYTHE_TRAVEL, "Chargold Scythe Spinning");
         sound(ModSounds.CHARGOLD_SCYTHE_THROW, "Chargold Scythe Thrown");

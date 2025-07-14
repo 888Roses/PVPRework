@@ -6,42 +6,40 @@ import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.rose.pvp_rework.api.util.MatrixUtil;
 import net.rose.pvp_rework.common.entity.ChargoldScytheEntity;
 import net.rose.pvp_rework.common.init.ModItems;
-import org.joml.Vector3d;
 
 public class ChargoldScytheEntityRenderer extends EntityRenderer<ChargoldScytheEntity> {
-    private static final ItemStack stack;
+    public static final float SCALE = 1.2F;
+    private static final ItemStack STACK = new ItemStack(ModItems.CHARGOLD_SCYTHE);
+
     private final ItemRenderer itemRenderer;
 
     public ChargoldScytheEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
+
         this.itemRenderer = ctx.getItemRenderer();
     }
 
     @Override
-    public void render(ChargoldScytheEntity scythe, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+    public void render(ChargoldScytheEntity scythe, float yaw, float tickDelta, MatrixStack matrices,
+                       VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
 
         matrices.multiply(MatrixUtil.fromEulerAngles(0, ((float) scythe.age + tickDelta) * -75.0F, 0));
         matrices.multiply(MatrixUtil.fromEulerAngles(90.0F, 180.0F, 0));
 
-        matrices.scale(1.2F, 1.2F, 1.2F);
+        matrices.scale(SCALE, SCALE, SCALE);
         matrices.translate(0, 0.25f, 0);
 
-        var e = new ItemStack(ModItems.CHARGOLD_SCYTHE);
-        e.getOrCreateNbt().putBoolean("is_thrown",true);
         this.itemRenderer.renderItem(
-                e, ModelTransformationMode.FIXED,
-                light, OverlayTexture.DEFAULT_UV,
-                matrices, vertexConsumers,
+                STACK, ModelTransformationMode.FIXED,
+                light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers,
                 scythe.getWorld(), scythe.getId()
         );
 
@@ -50,10 +48,6 @@ public class ChargoldScytheEntityRenderer extends EntityRenderer<ChargoldScytheE
     }
 
     public Identifier getTexture(ChargoldScytheEntity entity) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
-    }
-
-    static {
-        stack = ModItems.CHARGOLD_SCYTHE.getDefaultStack();
+        return PlayerScreenHandler.BLOCK_ATLAS_TEXTURE;
     }
 }
