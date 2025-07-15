@@ -83,14 +83,18 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
             return;
         }
 
-        if (this.HIT_ENEMY_SOUNDS.isEmpty() || this.age < this.nextEnemySoundAge) {
-            return;
-        }
+        try {
+            if (this.HIT_ENEMY_SOUNDS.isEmpty() || this.age < this.nextEnemySoundAge) {
+                return;
+            }
 
-        final var item = this.HIT_ENEMY_SOUNDS.get(this.HIT_ENEMY_SOUNDS.size() - 1);
-        this.HIT_ENEMY_SOUNDS.remove(this.HIT_ENEMY_SOUNDS.size() - 1);
-        this.nextEnemySoundAge = this.age + 1;
-        ChargoldScytheHitSoundNetworkMessageS2C.send(serverPlayer, item);
+            final var item = this.HIT_ENEMY_SOUNDS.get(this.HIT_ENEMY_SOUNDS.size() - 1);
+            this.HIT_ENEMY_SOUNDS.remove(this.HIT_ENEMY_SOUNDS.size() - 1);
+            this.nextEnemySoundAge = this.age + 1;
+            ChargoldScytheHitSoundNetworkMessageS2C.send(serverPlayer, item);
+        } catch (Exception ignored) {
+
+        }
     }
 
     private void updateTravelingSounds() {
