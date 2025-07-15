@@ -4,11 +4,10 @@
   "package": "net.rose.pvp_rework.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LivingEntityMixin",
+    "MinecraftClientMixin",
     "api.LivingEntityMixin"
   ],
   "client": [
-    "MinecraftClientMixin",
     "api.BipedEntityModelMixin",
     "api.ItemRendererMixin",
     "api.MinecraftClientMixin",

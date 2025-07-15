@@ -16,7 +16,6 @@ import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -37,10 +36,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class ChargoldScytheItem extends AxeItem {
-    protected static final UUID ATTACK_REACH_MODIFIER_ID = UUID.fromString("76a8dee3-3e7e-4e11-ba46-a19b0c724567");
-    private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
     protected static final float ATTACK_SPEED = ToolUtil.getEffectiveAttackSpeed(1.3F);
     public static final float TRAVEL_SPEED = 2.25F;
+
+    protected static final UUID ATTACK_REACH_MODIFIER_ID = UUID.fromString("76a8dee3-3e7e-4e11-ba46-a19b0c724567");
+    private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
     public ChargoldScytheItem() {
         super(ToolMaterials.GOLD, ToolUtil.getAttackDamage(ToolMaterials.GOLD, 9), ATTACK_SPEED, new Settings());
@@ -94,7 +94,7 @@ public class ChargoldScytheItem extends AxeItem {
         final var component = ModEntityComponents.CHARGOLD_SCYTHE.get(user);
         final var stack = user.getStackInHand(hand);
 
-        if (!component.hasScythe()) {
+        if (component.isThrown()) {
             final var scytheEntity = component.getScytheEntity();
             if (EnchantmentUtil.hasEnchantment(stack, ModEnchantments.RECALL) && scytheEntity != null) {
                 // Recalls it.
@@ -105,8 +105,7 @@ public class ChargoldScytheItem extends AxeItem {
             return TypedActionResult.pass(stack);
         }
 
-        if (world instanceof
-                ServerWorld serverWorld) {
+        if (world instanceof ServerWorld serverWorld) {
             final var scytheEntity = ModEntityTypes.CHARGOLD_SCYTHE.create(world);
             if (scytheEntity != null) {
                 scytheEntity.setOwner(user);
@@ -114,9 +113,11 @@ public class ChargoldScytheItem extends AxeItem {
                 scytheEntity.setLifetime(25);
                 scytheEntity.setRecallSpeed(TRAVEL_SPEED);
                 scytheEntity.setStack(stack.copy());
-                scytheEntity.refreshPositionAndAngles(user.getX(), user.getEyeY() - 0.1, user.getZ(), user.getYaw(), user.getPitch());
+                scytheEntity.refreshPositionAndAngles(user.getX(), user.getEyeY() - 0.1, user.getZ(), user.getYaw(),
+                        user.getPitch());
                 scytheEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, TRAVEL_SPEED, 0.0F);
-                component.setHasScythe(false);
+
+                component.setThrown(true);
                 component.setScythe(scytheEntity);
 
                 serverWorld.spawnEntity(scytheEntity);
@@ -134,21 +135,5 @@ public class ChargoldScytheItem extends AxeItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (entity instanceof LivingEntity livingEntity) {
-            final var component = ModEntityComponents.CHARGOLD_SCYTHE.get(livingEntity);
-
-            if (!stack.hasNbt()
-                    || !stack.getOrCreateNbt().contains("has_scythe")
-                    || stack.getOrCreateNbt().getBoolean("has_scythe") != component.hasScythe()) {
-                stack.getOrCreateNbt().putBoolean("has_scythe", component.hasScythe());
-            }
-        }
-    }
-
-    @Override
-    public ItemStack getDefaultStack() {
-        var stack = super.getDefaultStack();
-        stack.getOrCreateNbt().putBoolean("has_scythe", true);
-        return stack;
     }
 }

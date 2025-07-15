@@ -8,5 +8,7 @@ public class PVPReworkDataGenerator implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         final var pack = fabricDataGenerator.createPack();
         pack.addProvider(LangProvider::new);
+        pack.addProvider(RecipeProvider::new);
+        pack.addProvider(ModelProvider::new);
     }
 }

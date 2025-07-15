@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "pvp_rework:chargold_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "GG ",
+    "GS ",
+    " S "
+  ],
+  "result": {
+    "item": "pvp_rework:chargold_scythe"
+  },
+  "show_notification": true
+}

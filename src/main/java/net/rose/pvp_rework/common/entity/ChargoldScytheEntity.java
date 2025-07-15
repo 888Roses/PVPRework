@@ -1,7 +1,5 @@
 package net.rose.pvp_rework.common.entity;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -30,10 +28,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ChargoldScytheEntity extends PersistentProjectileEntity {
-    protected ItemStack stack;
-    protected int lifetime = 40;
-    protected float recallSpeed = 2.5F;
-
     protected final List<Vec3d> HIT_ENEMY_SOUNDS = new ArrayList<>();
     protected int nextEnemySoundAge;
 
@@ -41,82 +35,97 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
         super(entityType, world);
     }
 
-    public ItemStack getStack() {
-        return stack;
-    }
+    // region Stack
+
+    protected ItemStack stack;
 
     public void setStack(ItemStack stack) {
         this.stack = stack;
     }
 
-    public int getLifetime() {
-        return lifetime;
-    }
+    // endregion
+
+    // region Lifetime
+
+    protected int lifetime = 40;
 
     public void setLifetime(int lifetime) {
         this.lifetime = lifetime;
     }
 
-    public float getRecallSpeed() {
-        return recallSpeed;
-    }
+    // endregion
+
+    // region Recall Speed
+
+    protected float recallSpeed = 2.5F;
 
     public void setRecallSpeed(float recallSpeed) {
         this.recallSpeed = recallSpeed;
     }
 
-    @Override
-    protected ItemStack asItemStack() {
-        return ItemStack.EMPTY;
+    // endregion
+
+    // region Tick
+
+    private void updateGroundTime() {
+        if (this.inGroundTime > 5) {
+            this.retrieve();
+            this.discard();
+        }
     }
 
-    @Override
-    public void tick() {
-        super.tick();
+    private void updateHitSounds() {
+        if (!(this.getOwner() instanceof ServerPlayerEntity serverPlayer)) {
+            return;
+        }
 
-        if (this.inGroundTime > 5) {
-            this.returnScythe();
+        if (this.HIT_ENEMY_SOUNDS.isEmpty() || this.age < this.nextEnemySoundAge) {
+            return;
+        }
+
+        final var item = this.HIT_ENEMY_SOUNDS.get(this.HIT_ENEMY_SOUNDS.size() - 1);
+        this.HIT_ENEMY_SOUNDS.remove(this.HIT_ENEMY_SOUNDS.size() - 1);
+        this.nextEnemySoundAge = this.age + 1;
+        ChargoldScytheHitSoundNetworkMessageS2C.send(serverPlayer, item);
+    }
+
+    private void updateTravelingSounds() {
+        if ((this.age + 2) % 5 != 0) {
+            return;
+        }
+
+        SoundUtil.playSoundWithDistance(
+                this.getWorld(), this.getPos(),
+                ModSounds.CHARGOLD_SCYTHE_TRAVEL, SoundCategory.PLAYERS,
+                MathHelper.nextFloat(this.random, 0.95F, 1.05F) - 0.25F,
+                MathHelper.nextFloat(this.random, 0.95F, 1.2F),
+                30F
+        );
+    }
+
+    private void updateReturning() {
+        if (this.age <= this.lifetime) {
+            return;
+        }
+
+        if (this.getOwner() == null) {
             this.discard();
             return;
         }
 
-        if (this.getOwner() instanceof ServerPlayerEntity serverPlayer) {
-            if (!this.HIT_ENEMY_SOUNDS.isEmpty() && this.age >= this.nextEnemySoundAge) {
-                final var item = this.HIT_ENEMY_SOUNDS.get(this.HIT_ENEMY_SOUNDS.size() - 1);
-                this.HIT_ENEMY_SOUNDS.remove(this.HIT_ENEMY_SOUNDS.size() - 1);
-                this.nextEnemySoundAge = this.age + 1;
-                ChargoldScytheHitSoundNetworkMessageS2C.send(serverPlayer, item);
-            }
+        final var direction = this.getOwner().getEyePos().subtract(0, 0.1d, 0).subtract(this.getPos());
+        // This checks if the scythe is close to its owner, in which case we want to discard it because the player
+        // would have picked it up. We also want to reset the "hasScythe" flag in the component.
+        if (direction.length() < this.getVelocity().length() / 2) {
+            this.retrieve();
+            this.discard();
+            return;
         }
 
-        if ((this.age + 2) % 5 == 0) {
-            SoundUtil.playSoundWithDistance(
-                    this.getWorld(), this.getPos(),
-                    ModSounds.CHARGOLD_SCYTHE_TRAVEL, SoundCategory.PLAYERS,
-                    MathHelper.nextFloat(this.random, 0.95F, 1.05F) - 0.25F,
-                    MathHelper.nextFloat(this.random, 0.95F, 1.2F),
-                    30F
-            );
-        }
+        this.setVelocity(direction.normalize().multiply(this.recallSpeed));
+    }
 
-        if (this.age > this.lifetime) {
-            if (this.getOwner() == null) {
-                this.discard();
-                return;
-            }
-
-            final var direction = this.getOwner().getEyePos().subtract(0, 0.1d, 0).subtract(this.getPos());
-            // This checks if the scythe is close to its owner, in which case we want to discard it because the player
-            // would have picked it up. We also want to reset the "hasScythe" flag in the component.
-            if (direction.length() < this.getVelocity().length() / 2) {
-                this.returnScythe();
-                this.discard();
-                return;
-            }
-
-            this.setVelocity(direction.normalize().multiply(this.recallSpeed));
-        }
-
+    private void updateDamage() {
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             final var box = Box.of(this.getPos(), this.getWidth(), this.getHeight(), this.getWidth());
             final var entitiesInRadius = this.getWorld().getEntitiesByClass(
@@ -166,14 +175,31 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
         }
     }
 
-    private void returnScythe() {
-        if (this.getOwner() instanceof LivingEntity ownerLivingEntity) {
-            final var component = ModEntityComponents.CHARGOLD_SCYTHE.get(ownerLivingEntity);
-            component.setHasScythe(true);
+    @Override
+    public void tick() {
+        super.tick();
 
-            if (ownerLivingEntity instanceof PlayerEntity player) {
-                player.getItemCooldownManager().set(ModItems.CHARGOLD_SCYTHE, 20);
-            }
+        this.updateGroundTime();
+        this.updateHitSounds();
+        this.updateTravelingSounds();
+        this.updateReturning();
+        this.updateDamage();
+    }
+
+    // endregion
+
+    private void retrieve() {
+        if (!(this.getOwner() instanceof LivingEntity livingEntity)) {
+            return;
+        }
+
+        // Return the scythe.
+        final var component = ModEntityComponents.CHARGOLD_SCYTHE.get(livingEntity);
+        component.setThrown(false);
+
+        // Cooldown for retrieving the scythe.
+        if (livingEntity instanceof PlayerEntity playerEntity) {
+            playerEntity.getItemCooldownManager().set(ModItems.CHARGOLD_SCYTHE, 15);
         }
     }
 
@@ -207,5 +233,10 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
     @Override
     protected boolean tryPickup(PlayerEntity player) {
         return false;
+    }
+
+    @Override
+    protected ItemStack asItemStack() {
+        return ItemStack.EMPTY;
     }
 }
