@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    },
+    {
+      "item": "pvp_rework:chargold_nugget"
+    }
+  ],
+  "result": {
+    "item": "pvp_rework:chargold_ingot"
+  }
+}

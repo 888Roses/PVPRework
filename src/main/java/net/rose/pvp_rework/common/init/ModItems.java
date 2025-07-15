@@ -5,11 +5,14 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Rarity;
 import net.rose.pvp_rework.common.PVPRework;
 import net.rose.pvp_rework.common.item.ChargoldScytheItem;
 
 public class ModItems {
     public static final Item CHARGOLD_SCYTHE = of("chargold_scythe", new ChargoldScytheItem());
+    public static final Item CHARGOLD_NUGGET = of("chargold_nugget", new Item.Settings().rarity(Rarity.UNCOMMON));
+    public static final Item CHARGOLD_INGOT = of("chargold_ingot", new Item.Settings().rarity(Rarity.UNCOMMON));
 
     // region BackEnd
 
