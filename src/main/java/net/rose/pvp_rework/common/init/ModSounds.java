@@ -8,6 +8,7 @@ public class ModSounds {
     public static final SoundEvent CHARGOLD_SCYTHE_THROW = of("item.chargold_scythe.throw");
     public static final SoundEvent CHARGOLD_SCYTHE_TRAVEL = of("item.chargold_scythe.travel");
     public static final SoundEvent CHARGOLD_SCYTHE_BOUNCE = of("item.chargold_scythe.bounce");
+    public static final SoundEvent CHARGOLD_SCYTHE_RETURN = of("item.chargold_scythe.return");
 
     // region BackEnd
 

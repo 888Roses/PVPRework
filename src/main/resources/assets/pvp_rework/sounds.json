@@ -18,5 +18,14 @@
     "category": "players",
     "sounds": ["pvp_rework:item/chargold_scythe/bounce"],
     "subtitle": "subtitles.pvp_rework.item.chargold_scythe.bounce"
+  },
+  "item.chargold_scythe.return": {
+    "category": "players",
+    "sounds": [
+      "minecraft:item/trident/return1",
+      "minecraft:item/trident/return2",
+      "minecraft:item/trident/return3"
+    ],
+    "subtitle": "subtitles.pvp_rework.item.chargold_scythe.return"
   }
 }

@@ -53,6 +53,10 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
         this.lifetime = lifetime;
     }
 
+    public int getLifetime() {
+        return this.lifetime;
+    }
+
     // endregion
 
     // region Recall Speed
