@@ -2,6 +2,8 @@ package net.rose.pvp_rework.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.rose.pvp_rework.client.init.ModEntityRenderers;
+import net.rose.pvp_rework.client.init.ModItemModels;
+import net.rose.pvp_rework.client.init.ModParticleFactories;
 import net.rose.pvp_rework.common.PVPRework;
 import net.rose.pvp_rework.common.init.ModNetworking;
 
@@ -14,5 +16,6 @@ public class PVPReworkClient implements ClientModInitializer {
         ModNetworking.createClientGlobalReceivers();
         ModItemModels.init();
         ModEntityRenderers.init();
+        ModParticleFactories.init();
     }
 }

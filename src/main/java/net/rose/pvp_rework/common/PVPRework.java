@@ -20,6 +20,7 @@ public class PVPRework implements ModInitializer {
         ModSounds.init();
         ModEnchantments.init();
         ModLootTableModifiers.init();
+        ModParticles.init();
     }
 
     public static Identifier id(String path) {

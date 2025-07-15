@@ -7,6 +7,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -17,11 +18,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.rose.pvp_rework.api.util.EnchantmentUtil;
+import net.rose.pvp_rework.api.util.ParticleUtil;
 import net.rose.pvp_rework.api.util.SoundUtil;
-import net.rose.pvp_rework.common.init.ModEnchantments;
-import net.rose.pvp_rework.common.init.ModEntityComponents;
-import net.rose.pvp_rework.common.init.ModItems;
-import net.rose.pvp_rework.common.init.ModSounds;
+import net.rose.pvp_rework.common.init.*;
 import net.rose.pvp_rework.common.networking.ChargoldScytheHitSoundNetworkMessageS2C;
 
 import java.util.List;
@@ -223,6 +222,11 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
                 ModSounds.CHARGOLD_SCYTHE_BOUNCE, SoundCategory.PLAYERS,
                 0.9F, MathHelper.nextFloat(random, 0.8F, 1.1F),
                 25F
+        );
+
+        ParticleUtil.spawnParticles(
+                this.getWorld(), ModParticles.CHARGOLD_SPARK,
+                blockHitResult.getPos(), Vec3d.ZERO, 20, 1.5
         );
     }
 

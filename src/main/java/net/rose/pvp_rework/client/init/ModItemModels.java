@@ -1,4 +1,4 @@
-package net.rose.pvp_rework.client;
+package net.rose.pvp_rework.client.init;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
