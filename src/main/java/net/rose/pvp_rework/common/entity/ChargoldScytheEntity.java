@@ -148,7 +148,8 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
             final var hasRecallEnchantment = EnchantmentUtil.hasEnchantment(this.stack, ModEnchantments.RECALL);
             var amount = 9F;
             if (this.getOwner() instanceof LivingEntity ownerLivingEntity) {
-                amount = (float) ownerLivingEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+                final var currentDamage = (float) ownerLivingEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+                amount = Math.max(amount, currentDamage);
             }
             if (hasRecallEnchantment) {
                 amount *= 0.75f;
