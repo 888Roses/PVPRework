@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class ChargoldScytheEntity extends PersistentProjectileEntity {
     protected final List<Vec3d> HIT_ENEMY_SOUNDS = new ArrayList<>();
     protected int nextEnemySoundAge;
+    protected int bounceCount;
 
     public ChargoldScytheEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
@@ -228,6 +229,14 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
                 this.getWorld(), ModParticles.CHARGOLD_SPARK,
                 blockHitResult.getPos(), Vec3d.ZERO, 20, 1.5
         );
+
+        if (this.age >= this.lifetime) {
+            this.bounceCount++;
+            if (this.bounceCount > 3) {
+                this.retrieve();
+                this.discard();
+            }
+        }
     }
 
     @Override
