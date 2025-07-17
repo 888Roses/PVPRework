@@ -37,13 +37,14 @@ import java.util.UUID;
 
 public class ChargoldScytheItem extends AxeItem {
     protected static final float ATTACK_SPEED = ToolUtil.getEffectiveAttackSpeed(1.3F);
+    public static final float ATTACK_DAMAGE = 9F;
     public static final float TRAVEL_SPEED = 2.25F;
 
     protected static final UUID ATTACK_REACH_MODIFIER_ID = UUID.fromString("76a8dee3-3e7e-4e11-ba46-a19b0c724567");
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
     public ChargoldScytheItem() {
-        super(ToolMaterials.GOLD, ToolUtil.getAttackDamage(ToolMaterials.GOLD, 9), ATTACK_SPEED, new Settings());
+        super(ToolMaterials.GOLD, ToolUtil.getAttackDamage(ToolMaterials.GOLD, (int)ATTACK_DAMAGE), ATTACK_SPEED, new Settings());
 
         final var builder = ImmutableMultimap.<EntityAttribute, EntityAttributeModifier>builder();
 

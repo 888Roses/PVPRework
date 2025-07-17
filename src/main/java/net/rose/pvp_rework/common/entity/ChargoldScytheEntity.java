@@ -22,6 +22,7 @@ import net.rose.pvp_rework.common.init.ModEnchantments;
 import net.rose.pvp_rework.common.init.ModEntityComponents;
 import net.rose.pvp_rework.common.init.ModItems;
 import net.rose.pvp_rework.common.init.ModSounds;
+import net.rose.pvp_rework.common.item.ChargoldScytheItem;
 import net.rose.pvp_rework.common.networking.ChargoldScytheHitSoundNetworkMessageS2C;
 
 import java.util.List;
@@ -146,7 +147,7 @@ public class ChargoldScytheEntity extends PersistentProjectileEntity {
             }
 
             final var hasRecallEnchantment = EnchantmentUtil.hasEnchantment(this.stack, ModEnchantments.RECALL);
-            var amount = 9F;
+            var amount = ChargoldScytheItem.ATTACK_DAMAGE;
             if (this.getOwner() instanceof LivingEntity ownerLivingEntity) {
                 amount = (float) ownerLivingEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
             }
