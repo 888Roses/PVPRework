@@ -15,6 +15,9 @@ public class ModelProvider extends ExtendedModelProvider {
 
     @Override
     protected void generateItems() {
+        item(ModItems.CHARGOLD_SCYTHE);
+        item(ModItems.CHARGOLD_SICKLE);
+
         item(ModItems.CHARGOLD_INGOT);
         item(ModItems.CHARGOLD_NUGGET);
     }

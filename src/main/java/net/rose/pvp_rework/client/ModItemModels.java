@@ -8,6 +8,11 @@ import net.rose.pvp_rework.common.init.ModEntityComponents;
 import net.rose.pvp_rework.common.init.ModItems;
 
 public class ModItemModels {
+    public static final ItemContextualModelInfo CHARGOLD_SICKLE =
+            ItemContextualModelInfo.create(ModItems.CHARGOLD_SICKLE)
+                    .with("chargold_sickle_handheld", ModItemModels::isHandheld)
+                    .register();
+
     public static final ItemContextualModelInfo CHARGOLD_SCYTHE =
             ItemContextualModelInfo.create(ModItems.CHARGOLD_SCYTHE)
                     .with("chargold_scythe_outline", info -> {

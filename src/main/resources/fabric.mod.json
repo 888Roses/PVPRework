@@ -36,7 +36,8 @@
   ],
   "custom": {
     "cardinal-components": [
-      "pvp_rework:chargold_scythe"
+      "pvp_rework:chargold_scythe",
+      "pvp_rework:chargold_sickle"
     ]
   },
   "accessWidener": "pvp_rework.accesswidener",

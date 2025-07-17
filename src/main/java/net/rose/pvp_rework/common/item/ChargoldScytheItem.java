@@ -51,7 +51,7 @@ public class ChargoldScytheItem extends AxeItem {
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE,
                 new EntityAttributeModifier(
                         ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier",
-                        8F, EntityAttributeModifier.Operation.ADDITION
+                        ATTACK_DAMAGE-1F, EntityAttributeModifier.Operation.ADDITION
                 )
         );
 
@@ -132,9 +132,5 @@ public class ChargoldScytheItem extends AxeItem {
         );
 
         return TypedActionResult.success(stack);
-    }
-
-    @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
     }
 }

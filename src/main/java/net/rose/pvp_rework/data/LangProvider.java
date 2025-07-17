@@ -48,6 +48,8 @@ public class LangProvider extends FabricLanguageProvider {
                 "Hitting an enemy with a thrown scythe immediately calls it back to you. Additionally, you can" +
                         " §2Place Block/Use Item §8to recall the scythe at any point."
         );
+
+        item(ModItems.CHARGOLD_SICKLE, "Chargold Sickle");
     }
 
     private void enchantment(Enchantment enchantment, String name, String desc) {
