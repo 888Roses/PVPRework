@@ -9,6 +9,7 @@
   "item.pvp_rework.chargold_scythe.desc2": "Charge by hitting critical hits.",
   "item.pvp_rework.chargold_sickle": "Chargold Sickle",
   "subtitles.pvp_rework.item.chargold_scythe.hit": "Chargold Scythe Hit",
+  "subtitles.pvp_rework.item.chargold_scythe.return": "Chargold Scythe Recalled",
   "subtitles.pvp_rework.item.chargold_scythe.throw": "Chargold Scythe Thrown",
   "subtitles.pvp_rework.item.chargold_scythe.travel": "Chargold Scythe Spinning"
 }

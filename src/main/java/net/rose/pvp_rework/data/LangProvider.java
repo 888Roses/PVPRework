@@ -40,7 +40,7 @@ public class LangProvider extends FabricLanguageProvider {
         sound(ModSounds.CHARGOLD_SCYTHE_TRAVEL, "Chargold Scythe Spinning");
         sound(ModSounds.CHARGOLD_SCYTHE_THROW, "Chargold Scythe Thrown");
         sound(ModSounds.CHARGOLD_SCYTHE_HIT, "Chargold Scythe Hit");
-
+        sound(ModSounds.CHARGOLD_SCYTHE_RETURN, "Chargold Scythe Recalled");
         lang.add(ModEntityTypes.CHARGOLD_SCYTHE, "Chargold Scythe");
 
         enchantment(

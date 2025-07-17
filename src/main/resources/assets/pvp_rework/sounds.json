@@ -19,14 +19,13 @@
     "sounds": ["pvp_rework:item/chargold_scythe/bounce"],
     "subtitle": "subtitles.pvp_rework.item.chargold_scythe.bounce"
   },
-
-  "item.chargold_sickle.equip": {
+  "item.chargold_scythe.return": {
     "category": "players",
     "sounds": [
-      "pvp_rework:item/chargold_sickle/equip1",
-      "pvp_rework:item/chargold_sickle/equip2",
-      "pvp_rework:item/chargold_sickle/equip3"
+      "minecraft:item/trident/return1",
+      "minecraft:item/trident/return2",
+      "minecraft:item/trident/return3"
     ],
-    "subtitle": "subtitles.pvp_rework.item.chargold_sickle.equip"
+    "subtitle": "subtitles.pvp_rework.item.chargold_scythe.return"
   }
 }

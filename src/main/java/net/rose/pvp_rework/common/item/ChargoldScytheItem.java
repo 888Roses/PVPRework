@@ -97,9 +97,15 @@ public class ChargoldScytheItem extends AxeItem {
 
         if (component.isThrown()) {
             final var scytheEntity = component.getScytheEntity();
-            if (EnchantmentUtil.hasEnchantment(stack, ModEnchantments.RECALL) && scytheEntity != null) {
+            if (EnchantmentUtil.hasEnchantment(stack, ModEnchantments.RECALL)
+                    && scytheEntity != null
+                    && scytheEntity.age < scytheEntity.getLifetime()) {
                 // Recalls it.
                 scytheEntity.setLifetime(-1);
+                SoundUtil.playSound(
+                        world, user.getPos(), ModSounds.CHARGOLD_SCYTHE_RETURN, user.getSoundCategory(),
+                        1f, MathHelper.nextFloat(user.getRandom(), 0.9f, 1.1f)
+                );
                 return TypedActionResult.success(stack);
             }
 
