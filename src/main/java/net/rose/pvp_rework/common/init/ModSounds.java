@@ -9,6 +9,8 @@ public class ModSounds {
     public static final SoundEvent CHARGOLD_SCYTHE_TRAVEL = of("item.chargold_scythe.travel");
     public static final SoundEvent CHARGOLD_SCYTHE_BOUNCE = of("item.chargold_scythe.bounce");
 
+    public static final SoundEvent CHARGOLD_SICKLE_EQUIP = of("item.chargold_sickle.equip");
+
     // region BackEnd
 
     private static SoundEvent of(String path) {

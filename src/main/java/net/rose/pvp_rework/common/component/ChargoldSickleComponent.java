@@ -3,14 +3,17 @@ package net.rose.pvp_rework.common.component;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.CommonTickingComponent;
-import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.rose.pvp_rework.api.component.ExtendedComponent;
 import net.rose.pvp_rework.common.init.ModEntityComponents;
 import net.rose.pvp_rework.common.init.ModItems;
+import net.rose.pvp_rework.common.init.ModSounds;
 import org.jetbrains.annotations.NotNull;
 
 public class ChargoldSickleComponent implements ExtendedComponent<ChargoldSickleComponent>,
@@ -33,6 +36,18 @@ public class ChargoldSickleComponent implements ExtendedComponent<ChargoldSickle
         if (currentSelectedSlot != this.previousSelectedSlot && inventory.getStack(currentSelectedSlot).isOf(ModItems.CHARGOLD_SICKLE)) {
             this.equipAnimationProgress = 0.0;
             this.previousEquipAnimationProgress = 0.0;
+
+            MinecraftClient.getInstance().getSoundManager().play(new PositionedSoundInstance(
+                    ModSounds.CHARGOLD_SICKLE_EQUIP, this.player.getSoundCategory(),
+                    0.7f, 1f, this.player.getRandom(), this.player.getBlockPos()
+            ));
+
+            if (this.player.getStackInHand(Hand.OFF_HAND).isOf(ModItems.CHARGOLD_SICKLE)) {
+                MinecraftClient.getInstance().getSoundManager().play(new PositionedSoundInstance(
+                        ModSounds.CHARGOLD_SICKLE_EQUIP, this.player.getSoundCategory(),
+                        0.7f, 1f, this.player.getRandom(), this.player.getBlockPos()
+                ), 3);
+            }
         }
 
         this.previousSelectedSlot = currentSelectedSlot;
@@ -51,7 +66,8 @@ public class ChargoldSickleComponent implements ExtendedComponent<ChargoldSickle
         }
 
         this.previousEquipAnimationProgress = this.equipAnimationProgress;
-        this.equipAnimationProgress = MathHelper.clamp(this.equipAnimationProgress + 0.075f * 2, 0f, 1f);
+        // 0.15f = 0.3 second
+        this.equipAnimationProgress = MathHelper.clamp(this.equipAnimationProgress + 0.15f, 0f, 1f);
     }
 
     @Override

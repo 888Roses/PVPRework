@@ -18,5 +18,15 @@
     "category": "players",
     "sounds": ["pvp_rework:item/chargold_scythe/bounce"],
     "subtitle": "subtitles.pvp_rework.item.chargold_scythe.bounce"
+  },
+
+  "item.chargold_sickle.equip": {
+    "category": "players",
+    "sounds": [
+      "pvp_rework:item/chargold_sickle/equip1",
+      "pvp_rework:item/chargold_sickle/equip2",
+      "pvp_rework:item/chargold_sickle/equip3"
+    ],
+    "subtitle": "subtitles.pvp_rework.item.chargold_sickle.equip"
   }
 }

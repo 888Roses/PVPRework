@@ -50,6 +50,7 @@ public class LangProvider extends FabricLanguageProvider {
         );
 
         item(ModItems.CHARGOLD_SICKLE, "Chargold Sickle");
+        sound(ModSounds.CHARGOLD_SICKLE_EQUIP, "Equipping Sickle Item");
     }
 
     private void enchantment(Enchantment enchantment, String name, String desc) {
