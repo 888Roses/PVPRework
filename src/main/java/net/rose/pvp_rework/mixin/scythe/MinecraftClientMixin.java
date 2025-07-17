@@ -1,4 +1,4 @@
-package net.rose.pvp_rework.mixin;
+package net.rose.pvp_rework.mixin.scythe;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;

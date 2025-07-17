@@ -4,16 +4,17 @@
   "package": "net.rose.pvp_rework.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "sickle.ItemRendererMixin",
+    "api.LivingEntityMixin",
+    "scythe.MinecraftClientMixin",
     "sickle.HeldItemRendererMixin",
-    "MinecraftClientMixin",
-    "api.LivingEntityMixin"
+    "sickle.ItemRendererMixin"
   ],
   "client": [
     "api.BipedEntityModelMixin",
     "api.ItemRendererMixin",
     "api.MinecraftClientMixin",
-    "api.ModelLoaderMixin"
+    "api.ModelLoaderMixin",
+    "sickle.MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1
