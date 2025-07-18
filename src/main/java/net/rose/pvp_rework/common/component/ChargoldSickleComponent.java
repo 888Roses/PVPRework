@@ -7,9 +7,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.rose.pvp_rework.api.component.ExtendedComponent;
 import net.rose.pvp_rework.common.init.ModEntityComponents;
 import net.rose.pvp_rework.common.init.ModItems;
@@ -21,8 +21,7 @@ public class ChargoldSickleComponent implements ExtendedComponent<ChargoldSickle
         CommonTickingComponent {
 
     private final PlayerEntity player;
-    private double equipAnimationProgress;
-    private double previousEquipAnimationProgress;
+    private double equipAnimationProgress, previousEquipAnimationProgress;
     private int previousSelectedSlot;
 
     public ChargoldSickleComponent(PlayerEntity player) {
@@ -37,20 +36,18 @@ public class ChargoldSickleComponent implements ExtendedComponent<ChargoldSickle
             this.equipAnimationProgress = 0.0;
             this.previousEquipAnimationProgress = 0.0;
 
-            MinecraftClient.getInstance().getSoundManager().play(new PositionedSoundInstance(
-                    ModSounds.CHARGOLD_SICKLE_EQUIP, this.player.getSoundCategory(),
-                    0.7f, 1f, this.player.getRandom(), this.player.getBlockPos()
-            ));
-
-            if (this.player.getStackInHand(Hand.OFF_HAND).isOf(ModItems.CHARGOLD_SICKLE)) {
-                MinecraftClient.getInstance().getSoundManager().play(new PositionedSoundInstance(
-                        ModSounds.CHARGOLD_SICKLE_EQUIP, this.player.getSoundCategory(),
-                        0.7f, 1f, this.player.getRandom(), this.player.getBlockPos()
-                ), 3);
-            }
+            playEquipSound(0);
+            if (this.player.getStackInHand(Hand.OFF_HAND).isOf(ModItems.CHARGOLD_SICKLE)) playEquipSound(3);
         }
 
         this.previousSelectedSlot = currentSelectedSlot;
+    }
+
+    private void playEquipSound(int delay) {
+        MinecraftClient.getInstance().getSoundManager().play(new PositionedSoundInstance(
+                ModSounds.CHARGOLD_SICKLE_EQUIP, this.player.getSoundCategory(),
+                0.7f, 1f, this.player.getRandom(), this.player.getBlockPos()
+        ), delay);
     }
 
     public double getCurrentAnimationProgress(double tickDelta) {
@@ -58,8 +55,6 @@ public class ChargoldSickleComponent implements ExtendedComponent<ChargoldSickle
     }
 
     private void tickEquipAnimation() {
-        this.player.sendMessage(Text.literal("Progress: " + this.equipAnimationProgress), true);
-
         if (this.equipAnimationProgress == 1) {
             this.previousEquipAnimationProgress = this.equipAnimationProgress;
             return;

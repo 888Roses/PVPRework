@@ -13,8 +13,7 @@
     "api.BipedEntityModelMixin",
     "api.ItemRendererMixin",
     "api.MinecraftClientMixin",
-    "api.ModelLoaderMixin",
-    "sickle.MinecraftClientMixin"
+    "api.ModelLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -27,5 +27,29 @@
       "minecraft:item/trident/return3"
     ],
     "subtitle": "subtitles.pvp_rework.item.chargold_scythe.return"
+  },
+
+  "item.chargold_sickle.equip": {
+    "category": "players",
+    "sounds": [
+      "pvp_rework:item/chargold_sickle/equip1",
+      "pvp_rework:item/chargold_sickle/equip2",
+      "pvp_rework:item/chargold_sickle/equip3"
+    ],
+    "subtitle": "subtitles.pvp_rework.item.chargold_sickle.equip"
+  },
+  "item.chargold_sickle.attack": {
+    "category": "players",
+    "sounds": [
+      "pvp_rework:item/chargold_sickle/attack1",
+      "pvp_rework:item/chargold_sickle/attack2",
+      "pvp_rework:item/chargold_sickle/attack3"
+    ],
+    "subtitle": "subtitles.pvp_rework.item.chargold_sickle.attack"
+  },
+  "item.chargold_sickle.swap": {
+    "category": "players",
+    "sounds": ["pvp_rework:item/chargold_sickle/swap"],
+    "subtitle": "subtitles.pvp_rework.item.chargold_sickle.swap"
   }
 }

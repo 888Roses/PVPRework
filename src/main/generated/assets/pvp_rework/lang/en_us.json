@@ -1,4 +1,6 @@
 {
+  "enchantment.pvp_rework.agile": "Agile",
+  "enchantment.pvp_rework.agile.desc": "Reduces damage but increases attack speed and decreases swap ability cooldown.",
   "enchantment.pvp_rework.recall": "Recall",
   "enchantment.pvp_rework.recall.desc": "Hitting an enemy with a thrown scythe immediately calls it back to you. Additionally, you can §2Place Block/Use Item §8to recall the scythe at any point.",
   "entity.pvp_rework.chargold_scythe": "Chargold Scythe",
@@ -11,5 +13,8 @@
   "subtitles.pvp_rework.item.chargold_scythe.hit": "Chargold Scythe Hit",
   "subtitles.pvp_rework.item.chargold_scythe.return": "Chargold Scythe Recalled",
   "subtitles.pvp_rework.item.chargold_scythe.throw": "Chargold Scythe Thrown",
-  "subtitles.pvp_rework.item.chargold_scythe.travel": "Chargold Scythe Spinning"
+  "subtitles.pvp_rework.item.chargold_scythe.travel": "Chargold Scythe Spinning",
+  "subtitles.pvp_rework.item.chargold_sickle.attack": "Sickle Attacking",
+  "subtitles.pvp_rework.item.chargold_sickle.equip": "Equipping Sickle Item",
+  "subtitles.pvp_rework.item.chargold_sickle.swap": "Sickle Swap"
 }

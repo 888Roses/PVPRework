@@ -44,6 +44,15 @@ public class RecipeProvider extends FabricRecipeProvider {
                 .input('S', Items.STICK)
                 .criterion(hasItem(ModItems.CHARGOLD_INGOT), conditionsFromItem(ModItems.CHARGOLD_INGOT))
                 .offerTo(consumer, "create_chargold_scythe");
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.CHARGOLD_SICKLE)
+                .pattern("GG ")
+                .pattern("G G")
+                .pattern(" S ")
+                .input('G', ModItems.CHARGOLD_INGOT)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModItems.CHARGOLD_INGOT), conditionsFromItem(ModItems.CHARGOLD_INGOT))
+                .offerTo(consumer, "create_chargold_sickle");
     }
 
     private void wrappedChocolateBar(ItemConvertible choco, ItemConvertible dye, ItemConvertible... ingredients) {

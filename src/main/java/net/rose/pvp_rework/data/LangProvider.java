@@ -51,6 +51,12 @@ public class LangProvider extends FabricLanguageProvider {
 
         item(ModItems.CHARGOLD_SICKLE, "Chargold Sickle");
         sound(ModSounds.CHARGOLD_SICKLE_EQUIP, "Equipping Sickle Item");
+        sound(ModSounds.CHARGOLD_SICKLE_ATTACK, "Sickle Attacking");
+        sound(ModSounds.CHARGOLD_SICKLE_SWAP, "Sickle Swap");
+        enchantment(
+                ModEnchantments.AGILE, "Agile",
+                "Reduces damage but increases attack speed and decreases swap ability cooldown."
+        );
     }
 
     private void enchantment(Enchantment enchantment, String name, String desc) {

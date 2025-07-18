@@ -11,6 +11,8 @@ public class ModSounds {
     public static final SoundEvent CHARGOLD_SCYTHE_RETURN = of("item.chargold_scythe.return");
 
     public static final SoundEvent CHARGOLD_SICKLE_EQUIP = of("item.chargold_sickle.equip");
+    public static final SoundEvent CHARGOLD_SICKLE_ATTACK = of("item.chargold_sickle.attack");
+    public static final SoundEvent CHARGOLD_SICKLE_SWAP = of("item.chargold_sickle.swap");
 
     // region BackEnd
 

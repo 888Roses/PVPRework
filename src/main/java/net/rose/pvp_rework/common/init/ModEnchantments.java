@@ -5,6 +5,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.rose.pvp_rework.common.PVPRework;
+import net.rose.pvp_rework.common.enchantment.AgileEnchantment;
 import net.rose.pvp_rework.common.enchantment.RecallEnchantment;
 
 import java.util.LinkedHashMap;
@@ -13,7 +14,8 @@ import java.util.Map;
 public class ModEnchantments {
     private static final Map<Enchantment, Identifier> ENCHANTMENTS = new LinkedHashMap<>();
 
-    public static final Enchantment RECALL = createEnchantment("recall", new RecallEnchantment());
+    public static final Enchantment RECALL = of("recall", new RecallEnchantment());
+    public static final Enchantment AGILE = of("agile", new AgileEnchantment());
 
     // region backend
 
@@ -26,8 +28,8 @@ public class ModEnchantments {
         Registry.register(Registries.ENCHANTMENT, ENCHANTMENTS.get(enchantment), enchantment);
     }
 
-    private static <T extends Enchantment> T createEnchantment(@SuppressWarnings("SameParameterValue") String name,
-                                                               T enchantment) {
+    private static <T extends Enchantment> T of(String name,
+                                                T enchantment) {
         ENCHANTMENTS.put(enchantment, new Identifier(PVPRework.MOD_ID, name));
         return enchantment;
     }
