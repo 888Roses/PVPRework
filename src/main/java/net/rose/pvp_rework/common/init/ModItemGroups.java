@@ -23,6 +23,7 @@ public class ModItemGroups {
         entries.add(ModItems.CHARGOLD_NUGGET);
         entries.add(ModItems.CHARGOLD_SCYTHE);
         entries.add(ModItems.CHARGOLD_SICKLE);
+        entries.add(ModItems.CHARGOLD_HUMBLER);
     }
 
     public static void init() {

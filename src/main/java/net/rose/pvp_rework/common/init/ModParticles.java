@@ -13,6 +13,7 @@ import java.util.function.Function;
 
 public class ModParticles {
     public static final DefaultParticleType CHARGOLD_SPARK = of("chargold_spark");
+    public static final DefaultParticleType CHARGOLD_HUMBLER_WARNING = of("chargold_humbler_warning");
 
     private static DefaultParticleType of(String name) {
         var particle = FabricParticleTypes.simple();

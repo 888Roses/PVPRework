@@ -22,7 +22,6 @@ public class ChargoldScytheEntityRenderer extends EntityRenderer<ChargoldScytheE
 
     public ChargoldScytheEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
-
         this.itemRenderer = ctx.getItemRenderer();
     }
 

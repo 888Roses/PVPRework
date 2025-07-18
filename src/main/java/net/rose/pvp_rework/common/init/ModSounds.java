@@ -14,6 +14,8 @@ public class ModSounds {
     public static final SoundEvent CHARGOLD_SICKLE_ATTACK = of("item.chargold_sickle.attack");
     public static final SoundEvent CHARGOLD_SICKLE_SWAP = of("item.chargold_sickle.swap");
 
+    public static final SoundEvent CHARGOLD_HUMBLER_SPIKE = of("item.chargold_humbler.spike");
+
     // region BackEnd
 
     private static SoundEvent of(String path) {

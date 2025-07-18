@@ -13,6 +13,11 @@ public class ModItemModels {
                     .with("chargold_sickle_handheld", ModItemModels::isHandheld)
                     .register();
 
+    public static final ItemContextualModelInfo CHARGOLD_HUMBLER =
+            ItemContextualModelInfo.create(ModItems.CHARGOLD_HUMBLER)
+                    .with("chargold_humbler_handheld", ModItemModels::isHandheld)
+                    .register();
+
     public static final ItemContextualModelInfo CHARGOLD_SCYTHE =
             ItemContextualModelInfo.create(ModItems.CHARGOLD_SCYTHE)
                     .with("chargold_scythe_outline", info -> {

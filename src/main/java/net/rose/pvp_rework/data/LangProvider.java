@@ -59,6 +59,9 @@ public class LangProvider extends FabricLanguageProvider {
                 "Reduces damage but increases attack speed and decreases swap ability cooldown."
         );
 
+        item(ModItems.CHARGOLD_HUMBLER, "Chargold Humbler");
+        sound(ModSounds.CHARGOLD_HUMBLER_SPIKE, "Spike coming out of the ground");
+
         lang.add("itemgroup." + PVPRework.MOD_ID, "Chargold");
     }
 

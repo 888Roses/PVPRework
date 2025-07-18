@@ -51,5 +51,14 @@
     "category": "players",
     "sounds": ["pvp_rework:item/chargold_sickle/swap"],
     "subtitle": "subtitles.pvp_rework.item.chargold_sickle.swap"
+  },
+  "item.chargold_humbler.spike": {
+    "category": "players",
+    "sounds": [
+      "pvp_rework:item/chargold_humbler/spike1",
+      "pvp_rework:item/chargold_humbler/spike2",
+      "pvp_rework:item/chargold_humbler/spike3"
+    ],
+    "subtitle": "subtitles.pvp_rework.item.chargold_humbler.spike"
   }
 }

@@ -6,6 +6,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.rose.pvp_rework.common.PVPRework;
+import net.rose.pvp_rework.common.entity.ChargoldHumblerSpikeEntity;
 import net.rose.pvp_rework.common.entity.ChargoldScytheEntity;
 
 public class ModEntityTypes {
@@ -13,6 +14,12 @@ public class ModEntityTypes {
             "chargold_scythe",
             EntityType.Builder.create(ChargoldScytheEntity::new, SpawnGroup.MISC)
                     .setDimensions(2F, 0.5F)
+    );
+    public static final EntityType<ChargoldHumblerSpikeEntity> CHARGOLD_HUMBLER_SPIKE = of(
+            "chargold_humbler_spike",
+            EntityType.Builder
+                    .<ChargoldHumblerSpikeEntity>create(ChargoldHumblerSpikeEntity::new, SpawnGroup.MISC)
+                    .setDimensions(1F, 2F)
     );
 
     public static <T extends Entity> EntityType<T> of(String path, EntityType.Builder<T> entity) {
