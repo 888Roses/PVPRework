@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.rose.pvp_rework.common.PVPRework;
 import net.rose.pvp_rework.common.init.ModEnchantments;
 import net.rose.pvp_rework.common.init.ModEntityTypes;
 import net.rose.pvp_rework.common.init.ModItems;
@@ -57,6 +58,8 @@ public class LangProvider extends FabricLanguageProvider {
                 ModEnchantments.AGILE, "Agile",
                 "Reduces damage but increases attack speed and decreases swap ability cooldown."
         );
+
+        lang.add("itemgroup." + PVPRework.MOD_ID, "Chargold");
     }
 
     private void enchantment(Enchantment enchantment, String name, String desc) {
